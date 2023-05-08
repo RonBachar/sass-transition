@@ -1,0 +1,67 @@
+@import './scss/reset';
+@import './scss/base';
+@import './scss/typography';
+
+@import './scss/variables';
+@import './scss/mixin';
+
+
+$bgc-body : #ffebeb;
+$title-color1: #3700ff;
+$title-shadow1: #00e1ff;
+$title-color2: #a50a55;
+$title-shadow2: #ff00d9;
+$bgc-box: #ff007b;
+$bgc-cube: #ff5757;
+
+body {
+    background-color: $bgc-body;
+
+    .container {
+        @include flex-box();
+        flex-direction: column;
+
+        .title {
+            cursor: pointer;
+            margin: 2rem auto;
+            font-size: 5rem;
+            font-weight: bold;
+            color: $title-color1;
+            text-shadow: 1rem 1rem 1rem $title-shadow1;
+            transition: color 0.5s, text-shadow 0.5s;
+
+            &:hover {
+                transition: color 0.5s ease, text-shadow 0.5s ease;
+                color: $title-color2;
+                text-shadow: 1rem 1rem 1rem $title-shadow2;
+            }
+        }
+
+        .box {
+            @include box-size(250px, 250px);
+            @include flex-box();
+            cursor: pointer;
+            background-color: $bgc-box;
+            box-shadow: 50px 10px 50px rgb(101, 78, 78);
+            transition: transform 0.5s cubic-bezier(0.88, 0.26, 0.43, 0.88);
+            transform-origin: 50% 100%;
+            perspective: 500px;
+
+            .cube {
+                @include box-size(125px, 125px);
+                padding: 1rem;
+                background-color: $bgc-cube;
+                transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
+            }
+
+            &:hover {
+                transform: rotateX(-30deg);
+
+                .cube {
+                    transform: translate(0, 150px) rotateX(30deg) scaleX(1.2);
+                    background-color: rgb(50, 166, 228);
+                }
+            }
+        }
+    }
+}
